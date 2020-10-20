@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text editor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="btn-wrap">
+            <div class="edit-btn">
+                <button disabled class="btn editBtn"><i class="fas fa-code"></i></button>
+            </div>
+
+            <div class="font-style">
+                <button class="btn" value="bold" id="bold"><i class="fas fa-bold"></i></button>
+                <button class="btn" value="italic" id="italic"><i class="fas fa-italic"></i></button>
+                <button class="btn" value="underline" id="underline"><i class="fas fa-underline"></i></button>
+                <button class="btn" value="line-through" id="line-through"><i class="fas fa-strikethrough"></i></button>
+            </div>
+
+            <div class="text-align">
+                <button class="btn" value="left" id="align-left"><i class="fas fa-align-left"></i></button>
+                <button class="btn" value="center" id="align-center"><i class="fas fa-align-center"></i></button>
+                <button class="btn" value="right" id="align-right"><i class="fas fa-align-right"></i></button>
+            </div>
+
+            <div class="font-family">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-font"></i>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <ul>
+                                <li class="dropdown-item " style="font-family: Arial;">Arial</li>
+                                <li class="dropdown-item " style="font-family: Georgia;">Georgia</li>
+                                <li class="dropdown-item " style="font-family: Impact;">Impact</li>
+                                <li class="dropdown-item " style="font-family: Tahoma;">Tahoma</li>
+                                <li class="dropdown-item " style="font-family: 'Times New Roman';">Times New Roman</li>
+                                <li class="dropdown-item " style="font-family: Verdana;">Verdana</li>
+                            </ul>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn  dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-text-height"></i>
+
+                        <div class="dropdown-menu fontSize" aria-labelledby="dropdownMenuButton">
+                            <ul>
+                                <li class="dropdown-item size" style="font-size: 12px;">12px</li>
+                                <li class="dropdown-item size" style="font-size: 14px;">14px</li>
+                                <li class="dropdown-item size" style="font-size: 16px;">16px</li>
+                                <li class="dropdown-item size" style="font-size: 18px;">18px</li>
+                                <li class="dropdown-item size" style="font-size: 20px;">20px</li>
+                                <li class="dropdown-item size" style="font-size: 22px;">22px</li>
+                                <li class="dropdown-item size" style="font-size: 25px;">25px</li>
+                                <li class="dropdown-item size" style="font-size: 30px;">30px</li>
+                            </ul>
+                        </div>
+                    </button>
+                </div>
+
+                <button class="btn" id="paletteBtn"><i class="fas fa-palette"></i></button>
+                <div id="myModal" class="modal">
+                    <div class="modal-content" style="width: 43%;">
+                        <div class="modalHead">
+                            <span style="font-size: 25px;">Choose text color</span><span class="close">&times;</span>
+                        </div>
+                        <hr>
+                        <div class="colorBox">
+                            <div class="color" style="background-color: rgb(111, 189, 163);"></div>
+                            <div class="color" style="background-color: rgb(62, 170, 134);"></div>
+                            <div class="color" style="background-color: rgb(52, 226, 139);"></div>
+                            <div class="color" style="background-color: rgb(28, 160, 94);"></div>
+                            <div class="color" style="background-color: rgb(62, 181, 228);"></div>
+                            <div class="color" style="background-color: rgb(30, 141, 185);"></div>
+                            <div class="color" style="background-color: rgb(129, 73, 143);"></div>
+                            <div class="color" style="background-color: rgb(111, 18, 128);"></div>
+                            <div class="color" style="background-color: rgb(11, 44, 58);"></div>
+                            <div class="color" style="background-color: rgb(31, 35, 44);"></div>
+                            <div class="color" style="background-color: rgb(245, 210, 16);"></div>
+                            <div class="color" style="background-color: rgb(245, 172, 16);"></div>
+                            <div class="color" style="background-color: rgb(245, 138, 16);"></div>
+                            <div class="color" style="background-color: rgb(245, 88, 16);"></div>
+                            <div class="color" style="background-color: rgb(235, 71, 71);"></div>
+                            <div class="color" style="background-color: rgb(158, 32, 32);"></div>
+                            <div class="color" style="background-color: rgb(226, 220, 220);"></div>
+                            <div class="color" style="background-color: rgb(165, 161, 161);"></div>
+                            <div class="color" style="background-color: rgb(109, 108, 108);"></div>
+                            <div class="color" style="background-color: rgb(88, 87, 87);"></div>
+                            <div class="color" style="background-color: rgb(0, 0, 0);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn" id="imageBtn"><i class="fas fa-image"></i></button>
+                <div id="myModalBack" class="modal">
+                    <div class="modal-content" style="width: 43%;">
+                        <div class="modalHead">
+                            <span style="font-size: 25px;">Choose background color and image</span><span
+                                class="Close">&times;</span>
+                        </div>
+                        <hr>
+                        <div class="tabs">
+                            <button class="tablinks active" onclick="tabLink(event, 'colors')">Colors</button>
+                            <button class="tablinks" onclick="tabLink(event, 'images')">Images</button>
+                            <button class="tablinks" onclick="tabLink(event, 'files')">Files</button>
+                        </div>
+                        <div id="colors" class="tab-content" style="display: flex;">
+                            <div class="backColor" style="background-color: rgb(111, 189, 163);"></div>
+                            <div class="backColor" style="background-color: rgb(62, 170, 134);"></div>
+                            <div class="backColor" style="background-color: rgb(52, 226, 139);"></div>
+                            <div class="backColor" style="background-color: rgb(28, 160, 94);"></div>
+                            <div class="backColor" style="background-color: rgb(62, 181, 228);"></div>
+                            <div class="backColor" style="background-color: rgb(30, 141, 185);"></div>
+                            <div class="backColor" style="background-color: rgb(129, 73, 143);"></div>
+                            <div class="backColor" style="background-color: rgb(111, 18, 128);"></div>
+                            <div class="backColor" style="background-color: rgb(11, 44, 58);"></div>
+                            <div class="backColor" style="background-color: rgb(31, 35, 44);"></div>
+                            <div class="backColor" style="background-color: rgb(245, 210, 16);"></div>
+                            <div class="backColor" style="background-color: rgb(245, 172, 16);"></div>
+                            <div class="backColor" style="background-color: rgb(245, 138, 16);"></div>
+                            <div class="backColor" style="background-color: rgb(245, 88, 16);"></div>
+                            <div class="backColor" style="background-color: rgb(235, 71, 71);"></div>
+                            <div class="backColor" style="background-color: rgb(158, 32, 32);"></div>
+                            <div class="backColor" style="background-color: rgb(226, 220, 220);"></div>
+                            <div class="backColor" style="background-color: rgb(165, 161, 161);"></div>
+                            <div class="backColor" style="background-color: rgb(109, 108, 108);"></div>
+                            <div class="backColor" style="background-color: rgb(88, 87, 87);"></div>
+                            <div class="backColor" style="background-color: rgb(0, 0, 0);"></div>
+                        </div>
+                        <div id="images" class="tab-content" style="display: none;">
+                            <div class="backImage"
+                                style="background-image: url(img/2-nature.jpg); background-size: cover;"></div>
+                            <div class="backImage" style="background-image: url(img/1.jpg); background-size: cover;">
+                            </div>
+                            <div class="backImage" style="background-image: url(img/3.jpg); background-size: cover;">
+                            </div>
+                            <div class="backImage" style="background-image: url(img/4.jpg); background-size: cover;">
+                            </div>
+                            <div class="backImage" style="background-image: url(img/5.jpg); background-size: cover;">
+                            </div>
+                            <div class="backImage" style="background-image: url(img/6.jpg); background-size: cover;">
+                            </div>
+                            <div class="backImage" style="background-image: url(img/7.jpg); background-size: cover;">
+                            </div>
+                            <div class="backImage" style="background-image: url(img/8.jpg); background-size: cover;">
+                            </div>
+                            <div class="backImage" style="background-image: url(img/9.jpg); background-size: cover;">
+                            </div>
+                        </div>
+                        <div id="files" class="tab-content">
+                            <form>
+                                <input type="file" class="addFile">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lock">
+                <button style="display: block;" class="btn" id="signInBtn"><i class="fas fa-lock"></i></button>
+                <button style="display: none;" id="unlockBtn" class="btn"><i class="fas fa-unlock"></i></button>
+
+                <div id="myModalSign" class="modal">
+                    <div class="modal-content" style="width: 35%;">
+                        <div class="modalHead">
+                            <h3 style="font-size: 25px; text-align: center;">Sign In</h3>
+                        </div>
+                        <hr>
+                        <div class="formgroup">
+                            <form name="signin">
+                                <input type="text" class="form-control" id="login">
+                                <input type="password" class="form-control" id="password">
+                                <p class="message" style="color: red;"></p>
+                                <input type="button" id="signBtn" class="btn btn-secondary btn-lg btn-block"
+                                    value="Sign In">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="myModalSignOut" class="modal">
+                    <div class="modal-content" style="width: 35%; margin: 250px auto; height: 80px;">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-secondary" value="Cancel" id="cancel">
+                            <input type="button" class="btn btn-danger" value="Sign Out" id="signOutBtn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="editBlock" style="display: none;">
+            <button class="btn save"><i class="fas fa-save"></i></button>
+            <button class="btn createTable"><i class="fas fa-table"></i></button>
+            <button class="btn listOl"><i class="fas fa-list-ol"></i></button>
+            <button class="btn listUl"><i class="fas fa-list-ul"></i></button>
+        </div>
+
+        <div id="myModalTable" class="modal">
+            <div class="modal-content" style="width: 60%;">
+                <div class="modalHead">
+                    <span style="font-size: 25px;">Create table</span><span class="closeTable">&times;</span>
+                </div>
+                <hr>
+                <form name="createTableForm">
+                    <div class="form-group needs-validation" novalidate>
+                        <div class="tableform">
+                            <label for="countTR">Count TR</label>
+                            <input class="form-control" type="number" id="countTR" placeholder="Type here... " min="1">
+                        </div>
+                        <div class="tableform">
+                            <label for="countTD">Count TR</label>
+                            <input class="form-control" type="number" id="countTD" placeholder="Type here... "min="1">
+                        </div>
+                        <div class="tableform">
+                            <label for="widthTR">Width of TD</label>
+                            <input class="form-control" type="number" id="widthTR" placeholder="Type here... " min="1">
+                        </div>
+                        <div class="tableform">
+                            <label for="heightTD">Height of TD</label>
+                            <input class="form-control" type="number" id="heightTD" placeholder="Type here... " min="1">
+                        </div>
+                        <div class="tableform">
+                            <label for="widthBorder">Width of border</label>
+                            <input class="form-control" type="number" id="widthBorder" placeholder="Type here... " min="1">
+                        </div>
+                        <div class="tableform">
+                            <div class="tableform">
+                                <label for="styleBorder">Style of border</label>
+                                <select id="styleBorder" class="custom-select" >
+                                    <option value="choose style" selected>choose style</option>
+                                    <option value="solid">solid</option>
+                                    <option value="dotted">dotted</option>
+                                    <option value="dashed">dashed</option>
+                                    <option value="double ">double</option>
+                                    <option value="groove">groove</option>
+                                    <option value="ridge ">ridge</option>
+                                </select>
+                            </div>
+                            <div class="tableform">
+                                <label for="colorBorder">Color of border</label>
+                                <select id="colorBorder" class="custom-select" >
+                                    <option value="choose color">choose color</option>
+                                    <option value="black">black</option>
+                                    <option value="red">red</option>
+                                    <option value="green">green</option>
+                                    <option value="blue ">blue</option>
+                                    <option value="gray">gray</option>
+                                    <option value="white ">white</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formBtn">
+                            <input type="button" id="resetBtn" class="btn btn-danger btn-lg" value="Reset">
+                            <input type="button" id="createBtn" class="btn btn-success btn-lg" value="Create table">
+                        </div>
+                        <span class="error" style="color: red;"></span>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div id="myModalListOl" class="modal">
+            <div class="modal-content" style="width: 40%;">
+                <div class="modalHead">
+                    <span style="font-size: 25px;">Create Ol</span><span class="closeOl">&times;</span>
+                </div>
+                <hr>
+                <form name="listOlForm">
+                    <label for="countOl">Count li item</label>
+                    <input type="number" id="countOl" class="form-control" placeholder="Type here.." min="1">
+                    <label>Type mark of list</label>
+                    <select id="typeMark" class="custom-select">
+                        <option value="choose ol mark">choose ol mark</option>
+                        <option value="decimal">1</option>
+                        <option value="upper-roman">I</option>
+                        <option value="lower-roman">i</option>
+                        <option value="upper-latin">A</option>
+                        <option value="lower-latin">a</option>
+                    </select>
+                    <span class="invalidValue" style="color: red;"></span>
+                    <div class="formBtn">
+                        <input type="button" value="Reset" class="btn btn-danger btn-lg" id="resetOl">
+                        <input type="button" value="Create list" class="btn btn-success btn-lg" id="createOl">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="myModalListUl" class="modal">
+            <div class="modal-content" style="width: 40%;">
+                <div class="modalHead">
+                    <span style="font-size: 25px;">Create Ul</span><span class="closeUl">&times;</span>
+                </div>
+                <hr>
+                <form name="listUlForm">
+                    <label for="countUl">Count li item</label>
+                    <input type="number" id="countUl" class="form-control" placeholder="Type here.." min="1">
+                    <label>Type mark of list</label>
+                    <select id="typeMarkUl" class="custom-select">
+                        <option value="choose ul mark">choose ul mark</option>
+                        <option value="circle">circle</option>
+                        <option value="square">square</option>
+                        <option value="disc">disc</option>
+                    </select>
+                    <span class="invalidVal" style="color: red;"></span>
+                    <div class="formBtn">
+                        <input type="button" value="Reset" class="btn btn-danger btn-lg" id="resetUl">
+                        <input type="button" value="Create list" class="btn btn-success btn-lg" id="createUl">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="box-p">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusantium similique non at modi
+            cum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusantium similique non at modi
+            cum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusantium similique non at modi
+            cum</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusantium similique non at modi
+            cum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusantium similique non at modi
+            cum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusantium similique non at modi
+            cum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusantium similique non at modi
+            cum!</p>
+    </div>
+
+    <textarea id="textarea" cols="30" rows="10" style="display: none;"></textarea>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
